@@ -1,0 +1,15 @@
+<h1>New Inventory Item</h1>
+
+<%= form_with model: @inventory_item do |form| %>
+  <div>
+    <%= form.label :stock_number %><br>
+    <%= form.text_field :stock_number %>
+    <% @inventory_item.errors.full_messages_for(:stock_number).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

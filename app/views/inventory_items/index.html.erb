@@ -1,0 +1,11 @@
+<h1>Voyager Cargo Hold Inventory Items:</h1>
+
+<ul>
+  <% @inventory_items.each do |item| %>
+    <li>
+      <%= item.stock_number %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add New Inventory Item", new_inventory_item_path %>
