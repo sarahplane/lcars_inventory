@@ -1,5 +1,6 @@
 class InventoryItemsController < ApplicationController
   before_action :set_inventory_item, only: [:edit, :update, :destroy]
+  before_action :set_products, only: [:new, :edit]
 
   def index
     @inventory_items = InventoryItem.all
@@ -37,10 +38,14 @@ class InventoryItemsController < ApplicationController
 
   private
     def inventory_item_params
-      params.require(:inventory_item).permit(:stock_number, :status)
+      params.require(:inventory_item).permit(:stock_number, :status, :product_id)
     end
 
     def set_inventory_item
       @inventory_item = InventoryItem.find(params[:id])
+    end
+
+    def set_products
+      @products = Product.by_name
     end
 end

@@ -1,4 +1,6 @@
 class InventoryItem < ApplicationRecord
+  belongs_to :product
+
   enum status: {
     in_stock: 'in_stock',
     sold: 'sold',

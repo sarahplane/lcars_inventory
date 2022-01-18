@@ -2,6 +2,7 @@
   <div>
     <%= form.label :stock_number %><br>
     <%= form.text_field :stock_number %>
+    <%= form.collection_select(:product_id, products, :id, :name_with_category) %>
     <% @inventory_item.errors.full_messages_for(:stock_number).each do |message| %>
       <div><%= message %></div>
     <% end %>

@@ -5,8 +5,8 @@
     <li>
       <%= item.stock_number %>
       <%= link_to "Edit", edit_inventory_item_path(item) %>
-      <%= link_to "delete", {:controller => :inventory_items,
-      :action => 'destroy', :id => item.id }, :method => :delete %>
+      <%= link_to "Delete", {:controller => :inventory_items,
+        :action => 'destroy', :id => item.id }, :method => :delete %>
     </li>
   <% end %>
 </ul>
