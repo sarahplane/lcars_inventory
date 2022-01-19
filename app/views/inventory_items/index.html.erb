@@ -1,13 +1,19 @@
-<h1>Voyager Cargo Hold Inventory Items:</h1>
+<h1>Voyager Cargo Hold Inventory:</h1>
 
 <ul>
-  <% @inventory_items.each do |item| %>
-    <li>
-      <%= item.stock_number %>
-      <%= link_to "Edit", edit_inventory_item_path(item) %>
-      <%= link_to "Delete", {:controller => :inventory_items,
-        :action => 'destroy', :id => item.id }, :method => :delete %>
-    </li>
+  <% @inventory_items_by_product_and_category.each do |category, products| %>
+    <h1><%= category %>
+      <% products.each do |product, items| %>
+        <h2><%= product.name %> (<%= items.length %>)</h2>
+        <% items.each do |item| %>
+          <div>
+            Stock Number: <%= item.stock_number %>
+            <%= link_to "Edit", edit_inventory_item_path(item) %>
+            <%= link_to "Delete", {:controller => :inventory_items,
+              :action => 'destroy', :id => item.id }, :method => :delete %>
+          </div>
+        <% end %>
+      <% end %>
   <% end %>
 </ul>
 

@@ -1,7 +1,11 @@
 require "test_helper"
 
 class ProductTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @product = Product.create(name: "Ration", category: "Food")
+  end
+
+  test "name with category" do
+    assert_equal "Ration - Food", @product.name_with_category
+  end
 end

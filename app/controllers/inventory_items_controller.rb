@@ -1,9 +1,9 @@
 class InventoryItemsController < ApplicationController
   before_action :set_inventory_item, only: [:edit, :update, :destroy]
-  before_action :set_products, only: [:new, :edit]
+  before_action :set_products, only: [:new, :edit, :create, :update]
 
   def index
-    @inventory_items = InventoryItem.all
+    @inventory_items_by_product_and_category = InventoryItem.by_product_and_category
   end
 
   def new
