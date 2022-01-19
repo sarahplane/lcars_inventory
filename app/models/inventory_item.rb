@@ -9,6 +9,8 @@ class InventoryItem < ApplicationRecord
   }
 
   validates :stock_number, presence: true, length: { minimum: 10 }, uniqueness: true
+  validate :tribbles_not_allowed_on_board
+
 
   def self.by_product_and_category
     self.all
@@ -35,5 +37,11 @@ class InventoryItem < ApplicationRecord
 
   def product_category
     product.category
+  end
+
+  def tribbles_not_allowed_on_board
+    if product.name == "Tribble"
+      errors.add(:product_id, "Tribbles are strictly forbidden from being brought aboard Voyager!")
+    end
   end
 end

@@ -1,8 +1,15 @@
 <h1>Voyager Cargo Hold Inventory:</h1>
 
+<%= link_to '<button type="button">Add New Inventory Item</button>'.html_safe, new_inventory_item_path %>
+<br />
+<br />
+<br />
+<%= link_to '<button type="button">Download Inventory to CSV</button>'.html_safe, inventory_items_path(:format => "csv") %>
+<br />
+<br />
 <ul>
   <% @inventory_items_by_product_and_category.each do |category, products| %>
-    <h1><%= category %>
+    <h1><u><%= category %></u>
       <% products.each do |product, items| %>
         <h2><%= product.name %> (<%= items.length %>)</h2>
         <% items.each do |item| %>
@@ -14,9 +21,7 @@
           </div>
         <% end %>
       <% end %>
+      <br />
+      <br />
   <% end %>
 </ul>
-
-<%= link_to "Add New Inventory Item", new_inventory_item_path %>
-
-<%= link_to "Download as CSV", inventory_items_path(:format => "csv") %>
