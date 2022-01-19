@@ -4,6 +4,11 @@ class InventoryItemsController < ApplicationController
 
   def index
     @inventory_items_by_product_and_category = InventoryItem.by_product_and_category
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data InventoryItem.to_csv, filename: "Voyager Inventory Items-#{Date.today}.csv" }
+    end
   end
 
   def new

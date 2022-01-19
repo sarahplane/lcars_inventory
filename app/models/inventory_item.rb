@@ -16,4 +16,24 @@ class InventoryItem < ApplicationRecord
       .group_by { |item| item.product}
       .group_by {|product, items| product.category}
   end
+
+  def self.to_csv
+    attributes = %w{stock_number status product_name product_category}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |item|
+        csv << attributes.map{ |attr| item.send(attr) }
+      end
+    end
+  end
+
+  def product_name
+    product.name
+  end
+
+  def product_category
+    product.category
+  end
 end
